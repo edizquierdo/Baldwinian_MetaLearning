@@ -12,5 +12,5 @@ for k in range(reps//threads):
         if (l<threads-1):
             os.system('python '+program+' '+str(r)+' &')
         else:
-            os.system('python '+program+' '+str(r))
+            os.system('time python '+program+' '+str(r))
         r += 1

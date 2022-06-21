@@ -8,7 +8,7 @@ import os
 E = int(sys.argv[1])
 
 # Save directory
-saveDir = 'MetaLearning4'
+saveDir = 'MetaLearning'
 if not os.path.exists(saveDir):
     os.mkdir(saveDir)
 
@@ -21,7 +21,7 @@ amplitude = [0.9]*T #np.random.random(size=T)*0.9 + 0.1
 #phase = np.linspace(0.0, np.pi, T) # np.random.random(size=T)* np.pi     #[0.0,Pi]
 phase = np.linspace(0.0, 3*np.pi/2, T) # np.random.random(size=T)* np.pi     #[0.0,Pi]
 
-inputs = np.linspace(-5,5,K).reshape(K,1)
+inputs = np.linspace(-2*np.pi,2*np.pi,K).reshape(K,1)
 outputs = np.zeros((T,K,1))
 for i in range(T):
     outputs[i] = amplitude[i]*np.sin(inputs+phase[i])
@@ -45,7 +45,7 @@ def fitnessFunction(genotype):
         nn.setParams(params)
         for j in range(L):
             errors[i,j] = nn.training_step(inputs, outputs[i])[0]
-    return -np.mean(errors)
+    return -np.mean(errors[:,-1])
 
 # Evolve and visualize fitness over generations
 ga = mga.Microbial(fitnessFunction, popsize, genesize, recombProb, mutatProb, demeSize, generations)
