@@ -14,10 +14,11 @@ K = 25  # Training -- Number of different points to take from the sine wave
 KK = 100 # Testing
 train_samples_per_epoch = 25 # Number of different samples to take
 
-T = 4       # Number of different tasks (sine waves)
+T = 8       # Number of different tasks (sine waves)
 amplitude = [0.9]*T #np.random.random(size=T)*0.9 + 0.1
 #phase = np.linspace(0.0, np.pi, T) # np.random.random(size=T)* np.pi     #[0.0,Pi]
-phase = np.linspace(0.0, 3*np.pi/2, T) # np.random.random(size=T)* np.pi     #[0.0,Pi]
+#phase = np.linspace(0.0, 3*np.pi/2, T) # np.random.random(size=T)* np.pi     #[0.0,Pi]
+phase = np.arange(0,2*np.pi,np.pi/4)
 
 inputs_train = np.linspace(-2*np.pi,2*np.pi,K).reshape(K,1)
 outputs_train = np.zeros((T,K,1))

@@ -46,12 +46,8 @@ for E in range(FROM,TO+1):
         nn = BackPropNet(unitsperlayer, activation="tanh")
         params = genotype.copy()
         nn.setParams(params)
-        # plt.plot(inputs_test,nn.forward(inputs_test)[-1],'k')
         for j in range(L):
             errorhistE[E,i,j] = nn.training_step(inputs_train, outputs_train[i])[0]
-        # plt.plot(inputs_test,outputs_test[i])
-        # plt.plot(inputs_test,nn.forward(inputs_test)[-1],'o-')
-# plt.show()
 
 # Test and show
 errorhistR = np.zeros((TO+1-FROM,T,L))
@@ -61,12 +57,8 @@ for E in range(FROM,TO+1):
         nn = BackPropNet(unitsperlayer, activation="tanh")
         params = genotype.copy()
         nn.setParams(params)
-        # plt.plot(inputs_test,nn.forward(inputs_test)[-1],'k')
         for j in range(L):
             errorhistR[E,i,j] = nn.training_step(inputs_train, outputs_train[i])[0]
-        # plt.plot(inputs_test,outputs_test[i])
-        # plt.plot(inputs_test,nn.forward(inputs_test)[-1],'o-')
-# plt.show()
 
 # Save data
 np.save(os.path.join(dir,"test_evolved.npy"), errorhistE)
@@ -76,7 +68,6 @@ plt.plot(np.mean(errorhistE,axis=1).T,'r',alpha=0.2)
 plt.plot(np.mean(errorhistR,axis=1).T,'y',alpha=0.2)
 plt.plot(np.mean(np.mean(errorhistE,axis=1),axis=0),'r-')
 plt.plot(np.mean(np.mean(errorhistR,axis=1),axis=0),'y-')
-#plt.plot(np.mean(errorhistE[11,:,:],axis=0).T,'k--')
 plt.xlabel("Learning epochs")
 plt.ylabel("Error")
 plt.show()
